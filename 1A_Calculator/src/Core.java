@@ -8,6 +8,8 @@ public class Core {
 	private static int userNumY;
 
 	private static String calcMeth;
+	
+	static boolean cont = true;
 
 	static String[] additionVocab = new String[]{"add", "adding", "addition", "Add", "Adding", "Adition"};
 	static String [] subtractionVocab = new String[] {"subtract", "subtracting", "subtraction", "Subtract", "Subtracting", "Subtraction"};
@@ -21,62 +23,80 @@ public class Core {
 	}
 
 	private static void checkCalcMeth() {
-		System.out.println("Please type in calculation method:");
-		Scanner sc = new Scanner(System.in);
-		calcMeth = sc.nextLine(); 
+		
+		while (cont) {
+			System.out.println("Please type in calculation method:");
+			Scanner sc = new Scanner(System.in);
+			calcMeth = sc.nextLine(); 
 
-		for (String method : additionVocab) {
-			if (calcMeth.equals(method)){
-				Scanner addInput = new Scanner(System.in);
-				System.out.println("Please type your first (whole) number:");
-				userNumX = addInput.nextInt();
+			for (String method : additionVocab) {
+				if (calcMeth.equals(method)){
+					Scanner addInput = new Scanner(System.in);
+					System.out.println("Please type your first (whole) number:");
+					userNumX = addInput.nextInt();
 
-				System.out.println("Please type your second (whole) number:");
-				userNumY = addInput.nextInt();
+					System.out.println("Please type your second (whole) number:");
+					userNumY = addInput.nextInt();
 
-				System.out.println(userNumX + " + " + userNumY + " = " + addNums(userNumX, userNumY));
+					System.out.println(userNumX + " + " + userNumY + " = " + addNums(userNumX, userNumY));
+				}
 			}
+
+			for (String method0 : subtractionVocab) {
+				if (calcMeth.equals(method0)){
+					Scanner subtractInput = new Scanner(System.in);
+					System.out.println("Please type your first (whole) number:");
+					userNumX = subtractInput.nextInt();
+
+					System.out.println("Please type your second (whole) number:");
+					userNumY = subtractInput.nextInt();
+
+					System.out.println(userNumX + " - " + userNumY + " = " + subtractNums(userNumX, userNumY));
+				}
+			}
+
+			for (String method2 : multiplicationVocab) {
+				if (calcMeth.equals(method2)){
+					Scanner multiplyInput = new Scanner(System.in);
+					System.out.println("Please type your first (whole) number:");
+					userNumX = multiplyInput.nextInt();
+
+					System.out.println("Please type your second (whole) number:");
+					userNumY = multiplyInput.nextInt();
+
+					System.out.println(userNumX + " mutliplied by " + userNumY + " = " + multiplyNums(userNumX, userNumY));
+				}
+			} 
+			for (String method3 : divisionVocab) {
+				if (calcMeth.equals(method3)){
+					Scanner divideInput = new Scanner(System.in);
+					System.out.println("Please type your first (whole) number:");
+					userNumX = divideInput.nextInt();
+
+					System.out.println("Please type your second (whole) number:");
+					userNumY = divideInput.nextInt();
+
+					System.out.println(userNumX + " divivded by " + userNumY + " = " + divideNums(userNumX, userNumY));
+				} 
+			}
+			promtNextCalc();
+			
 		}
+	}
 
-		for (String method0 : subtractionVocab) {
-			if (calcMeth.equals(method0)){
-				Scanner subtractInput = new Scanner(System.in);
-				System.out.println("Please type your first (whole) number:");
-				userNumX = subtractInput.nextInt();
-
-				System.out.println("Please type your second (whole) number:");
-				userNumY = subtractInput.nextInt();
-
-				System.out.println(userNumX + " - " + userNumY + " = " + subtractNums(userNumX, userNumY));
-			}
-		}
-
-		for (String method2 : multiplicationVocab) {
-			if (calcMeth.equals(method2)){
-				Scanner multiplyInput = new Scanner(System.in);
-				System.out.println("Please type your first (whole) number:");
-				userNumX = multiplyInput.nextInt();
-
-				System.out.println("Please type your second (whole) number:");
-				userNumY = multiplyInput.nextInt();
-
-				System.out.println(userNumX + " mutliplied by " + userNumY + " = " + multiplyNums(userNumX, userNumY));
-			}
-		} 
-		for (String method3 : divisionVocab) {
-			if (calcMeth.equals(method3)){
-				Scanner divideInput = new Scanner(System.in);
-				System.out.println("Please type your first (whole) number:");
-				userNumX = divideInput.nextInt();
-
-				System.out.println("Please type your second (whole) number:");
-				userNumY = divideInput.nextInt();
-
-				System.out.println(userNumX + " divivded by " + userNumY + " = " + divideNums(userNumX, userNumY));
-			} else {
-				System.out.println("Error: invalid input!");
-			}
-		}
+	private static void promtNextCalc() {
+		System.out.println("Would you like to calculate something else?");
+		Scanner sc1 = new Scanner(System.in);
+		String reply = sc1.nextLine();
+		reply = reply.toLowerCase();
+				if(reply.equals("yes")) {
+					cont = true; 
+				}
+				else if (reply.equals("no")) {
+					System.out.println("Alrighty: exiting program.");
+					cont = false;
+				}
+		
 	}
 
 	private static int subtractNums(int userNumX2, int userNumY2) {
